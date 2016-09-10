@@ -23,11 +23,15 @@
         </div>
         
         <!-- List Controller -->
-        <div ng-controller="listCtrl as list">
+        <div ng-controller="listCtrl as list" ng-hide="list.quizMetrics.quizActive">
+            
+            <!-- Search section -->
             <div class="well well-sm">
                 <input type="text" placeholder="Search..." ng-model="list.search">
-                <button class="btn btn-warning pull-right">Start Quiz</button>
-            </div>
+                <button class="btn btn-warning pull-right" ng-click="list.activateQuiz()">Start Quiz</button>
+            </div><!-- End Search section -->
+            
+            <!-- Turtle Info -->
             <div class="row">
                 <div class="col-sm-6" ng-repeat="turtle in list.data | filter:list.search">
                     <div class="well well-sm clearfix">
@@ -77,7 +81,14 @@
                         </div>
                     </div>
                 </div><!-- End Modal body -->   
+            </div>
         </div><!--End List Controller -->
+        
+        <!-- Quiz Controller -->
+        <div ng-controller="quizCtrl as quiz" ng-show="quiz.quizMetrics.quizActive"> 
+            <h1>Quiz</h1>
+        </div><!-- End Quiz Controller -->
+        
     </div><!-- End Container -->
  
     <!-- third party js -->
@@ -87,6 +98,8 @@
  
     <!-- Our application scripts -->
     <script src="js/app.js"></script> 
-     <script src="js/controllers/list.js"></script>
+    <script src="js/controllers/list.js"></script>
+    <script src="js/controllers/quiz.js"></script>
+    <script src="js/factories/quizMetrics.js"></script>
 </body>
 </html>
