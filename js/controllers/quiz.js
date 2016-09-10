@@ -6,9 +6,9 @@
         .module("turtleFacts")
         .controller("quizCtrl", QuizController);
         
-        QuizController.$inject = ["quizMetrics"];
+        QuizController.$inject = ["quizMetrics", "DataServices"];
         
-        function QuizController(quizMetrics) {
+        function QuizController(quizMetrics, DataServices) {
             var vm = this;
             
             vm.quizMetrics = quizMetrics;
