@@ -4,46 +4,28 @@
     
     angular
         .module("turtleFacts")
-        .controller("listCtrl", listController);
+        .controller("listCtrl", ListController);
         
-        function listController() {
+        ListController.$inject = ['quizMetrics', 'DataService'];
+        
+        function ListController(quizMetrics, DataService){
             var vm = this;
-            vm.data = turtlesData;
+            
+            vm.quizMetrics = quizMetrics;
+            vm.data = DataService.turtlesData;
+            vm.activeTurtle = {};
+            vm.changeActiveTurtle = changeActiveTurtle;
+            vm.activateQuiz = activateQuiz;
+            vm.search = '';
+            
+            function changeActiveTurtle(index){
+                vm.activeTurtle = index;
+            }
+            
+            function activateQuiz() {
+                quizMetrics.changeState(true);
+            }
         }
         
-        var turtlesData = [
-            { type: "Green Turtle",
-              image_url: "http://www.what-do-turtles-eat.com/wp-content/uploads.2014/10/Sea-Turtles-Habitat.jpg",
-              locations: "Tropical and subtropical oceans worldwide",
-              size: "Up to 1.5m and up to 300kg",
-              lifespan: "Over 80 years",
-              diet: "Herbivore",
-              description: "kdajfigjigjkfidfjlifdjfkdfjigjafjafkjaidfjdkgaifjaifjakfjgiajfkdfjifjajflkfj"
-            },
-            { type: "Purple Turtle",
-              image_url: "http://www.what-do-turtles-eat.com/wp-content/uploads.2014/10/Sea-Turtles-Habitat.jpg",
-              locations: "Tropical and subtropical oceans worldwide",
-              size: "Up to 1.5m and up to 300kg",
-              lifespan: "Over 80 years",
-              diet: "Herbivore",
-              description: "kdajfigjigjkfidfjlifdjfkdfjigjafjafkjaidfjdkgaifjaifjakfjgiajfkdfjifjajflkfj"
-            },
-            { type: "Pink Turtle",
-              image_url: "http://www.what-do-turtles-eat.com/wp-content/uploads.2014/10/Sea-Turtles-Habitat.jpg",
-              locations: "Tropical and subtropical oceans worldwide",
-              size: "Up to 1.5m and up to 300kg",
-              lifespan: "Over 80 years",
-              diet: "Herbivore",
-              description: "kdajfigjigjkfidfjlifdjfkdfjigjafjafkjaidfjdkgaifjaifjakfjgiajfkdfjifjajflkfj"
-            },
-            { type: "Brown Turtle",
-              image_url: "http://www.what-do-turtles-eat.com/wp-content/uploads.2014/10/Sea-Turtles-Habitat.jpg",
-              locations: "Tropical and subtropical oceans worldwide",
-              size: "Up to 1.5m and up to 300kg",
-              lifespan: "Over 80 years",
-              diet: "Herbivore",
-              description: "kdajfigjigjkfidfjlifdjfkdfjigjafjafkjaidfjdkgaifjaifjakfjgiajfkdfjifjajflkfj"
-            },
-            ];
         
 })();
